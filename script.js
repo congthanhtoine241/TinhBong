@@ -122,7 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Parsers
     const parseWeight = (valStr) => {
-        let str = valStr.trim();
+        let str = valStr.trim().replace(/,/g, '.');
         if (str.startsWith('0') && !str.includes('.') && str.length > 1) {
             str = '0.' + str.substring(1);
         }
@@ -130,7 +130,8 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const parsePrice = (valStr) => {
-        let num = parseFloat(valStr) || 0;
+        let str = valStr.trim().replace(/,/g, '.');
+        let num = parseFloat(str) || 0;
         return num * 1000;
     };
 
