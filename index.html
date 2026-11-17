@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tính Tiền Hàng</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -20,37 +20,37 @@
                     <div class="form-row">
                         <div class="form-group half">
                             <label for="orderDate">Ngày *</label>
-                            <input type="date" id="orderDate" required>
+                            <input type="date" id="orderDate" name="orderDate" required>
                         </div>
                         <div class="form-group half">
                             <label for="customerName">Ghe *</label>
-                            <input type="text" id="customerName" placeholder="Tên ghe..." required>
+                            <input type="text" id="customerName" name="customerName" placeholder="Tên ghe..." required>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="itemName">Tên món hàng *</label>
-                        <select id="itemName" required>
+                        <select id="itemName" name="itemName" required>
                             <option value="" disabled selected>-- Chọn loại hải sản --</option>
                         </select>
                     </div>
                     <div class="form-group" id="customItemNameContainer" style="display: none;">
                         <label for="customItemName">Tên món lạ *</label>
-                        <input type="text" id="customItemName" placeholder="Nhập tên món...">
+                        <input type="text" id="customItemName" name="customItemName" placeholder="Nhập tên món...">
                     </div>
                     <div class="form-row">
                         <div class="form-group half">
                             <label for="weight">Số cân (kg) *</label>
-                            <input type="text" inputmode="decimal" id="weight" placeholder="Nhập số kg" required>
+                            <input type="text" inputmode="decimal" id="weight" name="weight" placeholder="Nhập số kg" required>
                         </div>
                         <div class="form-group half">
                             <label for="price">Giá (k/kg) *</label>
-                            <input type="text" inputmode="decimal" id="price" placeholder="Nhập giá" required>
+                            <input type="text" inputmode="decimal" id="price" name="price" placeholder="Nhập giá" required>
                         </div>
                     </div>
                     <div class="total-preview">
                         Thành tiền: <span id="preview-amount">0</span> ₫
                     </div>
-                    <button type="submit" class="btn-primary">Thêm vào đơn hàng</button>
+                    <button type="submit" id="btn-submit" class="btn-primary">Thêm vào đơn hàng</button>
                 </form>
             </div>
 
@@ -58,9 +58,9 @@
                 <div class="list-header">
                     <h2>Danh sách đã thêm</h2>
                     <div>
-                        <button id="btn-save-invoice" class="btn-text" style="color: #34C759; margin-right: 12px;">Lưu HĐ</button>
-                        <button id="btn-report" class="btn-text" style="color: var(--primary-color); margin-right: 12px;">Báo cáo</button>
-                        <button id="clear-all" class="btn-text">Xóa tất cả</button>
+                        <button type="button" id="btn-save-invoice" class="btn-text" style="color: #34C759; margin-right: 12px;">Lưu HĐ</button>
+                        <button type="button" id="btn-report" class="btn-text" style="color: var(--primary-color); margin-right: 12px;">Báo cáo</button>
+                        <button type="button" id="clear-all" class="btn-text">Xóa tất cả</button>
                     </div>
                 </div>
 
@@ -77,10 +77,10 @@
             <div class="card" id="report-container" style="display: none; margin-top: 20px;">
                 <div class="list-header">
                     <h2>Báo cáo (Dạng chép tay)</h2>
-                    <button id="btn-copy" class="btn-text" style="color: var(--primary-color);">Copy</button>
+                    <button type="button" id="btn-copy" class="btn-text" style="color: var(--primary-color);">Copy</button>
                 </div>
                 <textarea id="report-text" readonly></textarea>
-                <button id="btn-close-report" class="btn-primary" style="margin-top: 12px;">Đóng</button>
+                <button type="button" id="btn-close-report" class="btn-primary" style="margin-top: 12px;">Đóng</button>
             </div>
         </div> <!-- End Tab Input -->
 
@@ -89,6 +89,7 @@
             <div class="card list-container" id="history-container" style="margin-top: 20px;">
                 <div class="list-header" style="margin-bottom: 0;">
                     <h2>Lịch sử hóa đơn</h2>
+                    <button type="button" id="clear-history" class="btn-text">Xóa tất cả</button>
                 </div>
                 <div id="invoice-list" style="margin-top: 16px;">
                     <!-- Danh sách hóa đơn accordion -->
@@ -100,11 +101,11 @@
 
     <!-- BOTTOM NAVIGATION -->
     <nav class="bottom-nav">
-        <button class="nav-btn active" data-target="tab-input">
+        <button type="button" class="nav-btn active" data-target="tab-input">
             <span class="nav-icon">📝</span>
             <span class="nav-text">Nhập Hàng</span>
         </button>
-        <button class="nav-btn" data-target="tab-history">
+        <button type="button" class="nav-btn" data-target="tab-history">
             <span class="nav-icon">🕒</span>
             <span class="nav-text">Lịch Sử</span>
         </button>
